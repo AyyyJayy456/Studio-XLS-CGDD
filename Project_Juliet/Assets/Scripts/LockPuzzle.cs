@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class LockPuzzle : MonoBehaviour
 {
@@ -13,10 +14,15 @@ public class LockPuzzle : MonoBehaviour
     public Image[] images;
   
     private int[] guess = new int[3];
+    private bool puzzleSolved = false;
+    private Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+
+      
+
     }
 
     // Update is called once per frame
@@ -24,7 +30,13 @@ public class LockPuzzle : MonoBehaviour
     {
         
     }
-   
+    IEnumerator StartCountdown()
+    {
+        yield return new WaitForSeconds(1.0f);
+        
+
+        ExitPuzzle();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -57,13 +69,32 @@ public class LockPuzzle : MonoBehaviour
     }
     public void ExitPuzzle()
     {
+        if(puzzleSolved)
+        {
+            GetComponent<Collider>().enabled = false;
+        }
+
         displayPanel.SetActive(false);
+        
     }
 
     public void OkGuess()
     {
-        for(int i = 0; i <guess.Length; i++)
-        {
+
+        
+            if(correctCode.SequenceEqual(guess))
+            {
+                images[0].color = Color.green;
+                images[1].color = Color.green;
+                images[2].color = Color.green;
+                puzzleSolved = true;
+                anim.SetTrigger("CaveUnlocked");
+                 StartCoroutine(StartCountdown());
+               
+               
+            }
+            for (int i = 0; i < guess.Length; i++)
+
             if (guess[i] == correctCode[i])
             {
                 images[i].color = Color.green; 
@@ -76,9 +107,6 @@ public class LockPuzzle : MonoBehaviour
             }
         }
     }
-
-
-}
 
 
 
