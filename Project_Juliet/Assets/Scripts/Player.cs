@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotationSpeed = 15f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Camera playerCamera;
+    [SerializeField] public GameObject pauseMenu;
+    [SerializeField] public GameObject winScreen;
     private float cameraAngle = 45f;
 
     private Rigidbody rb;
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     {
         pointInput = value.Get<Vector2>();
     }
+
 
     private void FixedUpdate()
     {

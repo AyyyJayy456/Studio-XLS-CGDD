@@ -35,23 +35,24 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Untagged") && other.gameObject.layer != LayerMask.NameToLayer("Default"))
+        if (other.gameObject.CompareTag(targetTag))
         {
-            return;
-        }
+            if (other.gameObject.TryGetComponent<PlayerHealth>(out var player))
+            {
+                player.TakeDamage(damage);
+            }
+            else if (other.gameObject.TryGetComponent<EnemyHealth>(out var enemy))
+            {
+                enemy.TakeDamage(damage);
+            }
 
-        // Hit the designated target
-        if (other.CompareTag(targetTag))
-        {
-            // Futue HEALTH : other.GetComponent<Health>()?.TakeDamage(damage);
             Destroy(gameObject);
             return;
         }
 
-        // Hit level geometry or walls
-        if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        else
         {
             Destroy(gameObject);
         }
