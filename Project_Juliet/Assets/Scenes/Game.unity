@@ -839,8 +839,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.18, y: 0.43, z: 0.18}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 857419459}
+  m_Children: []
   m_Father: {fileID: 373283654}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &121050439
@@ -2733,7 +2732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373283654}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Firepoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2753,6 +2752,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 121050438}
+  - {fileID: 677936649}
+  - {fileID: 857419459}
   m_Father: {fileID: 1072194563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &385889732
@@ -4929,12 +4930,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677936648}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.307, z: -0.881}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1072194563}
+  m_Father: {fileID: 373283654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &677936650
 MonoBehaviour:
@@ -4950,9 +4951,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zap
   spellName: Zap
   icon: {fileID: 0}
-  cooldown: 1
+  cooldown: 2
   radius: 5
-  damage: 15
+  damage: 5
+  expandTime: 0.3
+  shockwavePrefab: {fileID: 1393013097681380164, guid: ba37233ce53ec0a40bf944f1f9e5b007, type: 3}
 --- !u!1 &685374133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
@@ -5739,12 +5742,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857419458}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0.000000029802319, z: 0.000000029802319, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.18000002, y: 0.4300001, z: 0.18}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 121050438}
+  m_Father: {fileID: 373283654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &857419460
 MonoBehaviour:
@@ -5760,11 +5763,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Fireball
   spellName: Fireball
   icon: {fileID: 0}
-  cooldown: 1
+  cooldown: 0.7
   spellPrefab: {fileID: 4681497017246909810, guid: f1bd1f241f4f16d4aad29593d0739b03, type: 3}
   firePoint: {fileID: 373283654}
-  spellSpeed: 10
-  spellDamage: 10
+  speed: 8
+  damage: 10
 --- !u!1001 &874862732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6554,7 +6557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560198413650075926, guid: 029453c6f2dab764f9a166b66eb0f581, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.6475496
+      value: 10.855
       objectReference: {fileID: 0}
     - target: {fileID: 4560198413650075926, guid: 029453c6f2dab764f9a166b66eb0f581, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6562,7 +6565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560198413650075926, guid: 029453c6f2dab764f9a166b66eb0f581, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.998318
+      value: 29.07
       objectReference: {fileID: 0}
     - target: {fileID: 4560198413650075926, guid: 029453c6f2dab764f9a166b66eb0f581, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6643,7 +6646,6 @@ Transform:
   - {fileID: 1160182385}
   - {fileID: 579787634}
   - {fileID: 373283654}
-  - {fileID: 677936649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!114 &1072194564

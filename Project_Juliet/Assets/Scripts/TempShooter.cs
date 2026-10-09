@@ -36,8 +36,14 @@ public class TempShooter : MonoBehaviour
     {
         if (spells.Length > 0 && spells[current] != null)
         {
-            spells[current].CanCast();
-            Debug.Log($"Casting spell: {spells[current].spellName}");
+            if (spells[current].CanCast())
+            {
+                Debug.Log($"Casting spell: {spells[current].spellName}");
+            }
+            else
+            {
+                Debug.Log($"Spell {spells[current].spellName} is on cooldown.");
+            }
         }
     }
 }

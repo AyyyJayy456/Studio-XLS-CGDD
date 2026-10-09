@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
+        healthText.text = $"{currentHealth}/{maxHealth}";
     }
 
     public void TakeDamage(float damage)
