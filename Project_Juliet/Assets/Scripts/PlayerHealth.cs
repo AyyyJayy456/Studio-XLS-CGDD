@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     private float currentHealth;
     private bool isDead;
@@ -16,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
+        healthText.text = $"{currentHealth}/{maxHealth}";
     }
 
     public void TakeDamage(float damage)
@@ -24,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = Mathf.Max(currentHealth - damage, 0f);
         healthBar.value = currentHealth;
+        healthText.text = $"{currentHealth}/{maxHealth}";
 
         if (currentHealth <= 0f)
         {

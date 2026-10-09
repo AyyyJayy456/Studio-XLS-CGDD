@@ -46,7 +46,8 @@ public class LockPuzzle : MonoBehaviour
                 if (displayPanel != null)
                 {
                     displayPanel.SetActive(true);
-                }
+                    Spells.inPauseMenu = true;
+            }
             
         }
     }
@@ -75,7 +76,7 @@ public class LockPuzzle : MonoBehaviour
         }
 
         displayPanel.SetActive(false);
-        
+        Spells.inPauseMenu = false;
     }
 
     public void OkGuess()
