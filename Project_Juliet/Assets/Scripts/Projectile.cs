@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
     private float damage;
     private float speed;
     private string targetTag = "Enemy";
-    public string TargetTag => targetTag;
     private Rigidbody rb;
 
     void Awake()
@@ -36,7 +35,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag(targetTag))
         {
