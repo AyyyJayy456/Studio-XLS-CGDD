@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
 
     private float currentHealth;
     private bool isDead;
+    private Transform healthBarTransform;
+    private Camera mainCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
+        healthBarTransform = healthBar.transform;
+        mainCamera = Camera.main;
     }
 
     public void TakeDamage(float damage)
@@ -40,5 +44,18 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void LateUpdate()
+    {
+        if (healthBarTransform != null)
+        {
+            if (mainCamera == null)
+            {
+                mainCamera = Camera.main;
+                if (mainCamera == null) return;
+            }
+            healthBarTransform.rotation = mainCamera.transform.rotation;
+        }
     }
 }
