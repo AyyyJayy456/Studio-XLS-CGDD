@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 121050438}
   - component: {fileID: 121050440}
   - component: {fileID: 121050439}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3404,7 +3404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 373283654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Firepoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3427,6 +3427,7 @@ Transform:
   - {fileID: 121050438}
   - {fileID: 677936649}
   - {fileID: 857419459}
+  - {fileID: 1146388066}
   m_Father: {fileID: 1072194563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &385889732
@@ -3527,7 +3528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.08
+      value: 2.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3535,7 +3536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.51
+      value: 6.52
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4956,6 +4957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Merlin Model
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 50d34cf11f2e7fb42997e31dd074f72d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5424,7 +5429,7 @@ GameObject:
   - component: {fileID: 579787633}
   - component: {fileID: 579787632}
   - component: {fileID: 579787631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5850,7 +5855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 677936649}
   - component: {fileID: 677936650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Zap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6765,7 +6770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 857419459}
   - component: {fileID: 857419460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8134,8 +8139,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.010330454, y: 0.009999991, z: 0.007897926}
-  m_Center: {x: 0.0001652269, y: -0.000000004534828, z: -0.0015583138}
+  m_Size: {x: 0.010402467, y: 0.009999991, z: 0.007897926}
+  m_Center: {x: 0.00012921976, y: -0.000000004534828, z: -0.0015583138}
 --- !u!1001 &1051479414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8256,7 +8261,7 @@ GameObject:
   - component: {fileID: 1072194566}
   - component: {fileID: 1072194565}
   - component: {fileID: 1072194567}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -8325,9 +8330,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 4
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1072194566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8365,7 +8370,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072194560}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 56f41dea30a3a4c40bb2ec821e5dce57, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8412,6 +8417,7 @@ MonoBehaviour:
   spells:
   - {fileID: 857419460}
   - {fileID: 677936650}
+  - {fileID: 1146388067}
   selectionFrame:
   - {fileID: 864438936}
   - {fileID: 173695375}
@@ -8979,6 +8985,60 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1668137281}
   m_SourcePrefab: {fileID: 100100000, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
+--- !u!1 &1146388065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146388066}
+  - component: {fileID: 1146388067}
+  m_Layer: 8
+  m_Name: Scatter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1146388066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146388065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0.000000029802319, z: 0.000000029802319, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.18000002, y: 0.4300001, z: 0.18}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 373283654}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1146388067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146388065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5afaba55c560b4c80d7f7d02198026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scatter
+  spellName: Scatter
+  icon: {fileID: 0}
+  cooldown: 1
+  spellPrefab: {fileID: 4681497017246909810, guid: 24574b20d95ceb243ad4c263d9e0ab31, type: 3}
+  firePoint: {fileID: 1146388066}
+  spellSpeed: 10
+  spellDamage: 5
+  maxProjectiles: 5
+  regenTime: 1
+  anglePer: 10
 --- !u!1 &1153778945
 GameObject:
   m_ObjectHideFlags: 0
@@ -14722,7 +14782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.04
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14730,7 +14790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.58
+      value: 12.589998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 202fbcec7faca644db45ede5445ce82d, type: 3}
       propertyPath: m_LocalRotation.w

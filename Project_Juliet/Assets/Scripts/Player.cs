@@ -60,7 +60,8 @@ public class Player : MonoBehaviour
         Vector3 moveDirection = cameraAng * input;
         Vector3 moveVelocity = moveDirection * moveSpeed;
 
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        moveVelocity.y = rb.linearVelocity.y;
+        rb.linearVelocity = moveVelocity;
     }
 
     private void RotatePlayer()
