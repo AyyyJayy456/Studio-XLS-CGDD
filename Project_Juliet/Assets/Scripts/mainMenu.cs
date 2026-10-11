@@ -3,13 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour
 {
-    public GameObject initialMenu;
-    public GameObject backButton;
+    [SerializeField] private GameObject initialMenu;
+    [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject settingMenu;
     void Start()
     {
-        initialMenu = GameObject.FindGameObjectWithTag("initial");
-        backButton = GameObject.FindGameObjectWithTag("back");
-        backButton.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -24,6 +23,7 @@ public class mainMenu : MonoBehaviour
     public void settingsMenu()
     {
         initialMenu.SetActive(false);
+        settingMenu.SetActive(true);
         backButton.SetActive(true);
     }
     public void creditsMenu()
@@ -35,6 +35,10 @@ public class mainMenu : MonoBehaviour
     {
         initialMenu.SetActive(true);
         backButton.SetActive(false);
+        if (settingMenu.activeInHierarchy)
+        {
+            settingMenu.SetActive(false);
+        }
     }
     public void quitGame()
     {
