@@ -16,6 +16,11 @@ public class Scatter : Spells
     private int shots;
     private float regenTimer;
 
+    private void Awake()
+    {
+        if (firePoint == null) firePoint = transform.parent;
+    }
+    
 
     private void Start()
     {

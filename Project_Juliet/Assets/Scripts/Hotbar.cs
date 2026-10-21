@@ -1,17 +1,28 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Hotbar : MonoBehaviour
 {
 
     [SerializeField] private Spells[] spells;
+    [SerializeField] private Image[] slotIcons;
+
     [SerializeField] private GameObject[] selectionFrame;
+    [SerializeField] private Transform spellParent;
 
     private int current;
 
+    void Awake()
+    {
+        if (spells == null) spells = new Spells[selectionFrame.Length];
+        else if (spells.Length != selectionFrame.Length) Array.Resize(ref spells, selectionFrame.Length);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        RefreshIcons();
         Select(0);
     }
 
@@ -19,16 +30,14 @@ public class Hotbar : MonoBehaviour
     void Update()
     {
         if (Spells.inPauseMenu) return;
+        
         var kb = Keyboard.current;
 
-        for (int i = 0; i < spells.Length; i++)
-        {
-            if (kb.digit1Key.wasPressedThisFrame && i == 0) Select(i);
-            if (kb.digit2Key.wasPressedThisFrame && i == 1) Select(i);
-            if (kb.digit3Key.wasPressedThisFrame && i == 2) Select(i);
-            if (kb.digit4Key.wasPressedThisFrame && i == 3) Select(i);
-            if (kb.digit5Key.wasPressedThisFrame && i == 4) Select(i);
-        }
+        if (kb.digit1Key.wasPressedThisFrame) Select(0);
+        if (kb.digit2Key.wasPressedThisFrame) Select(1);
+        if (kb.digit3Key.wasPressedThisFrame) Select(2);
+        if (kb.digit4Key.wasPressedThisFrame) Select(3);
+        if (kb.digit5Key.wasPressedThisFrame) Select(4);
     }
 
     public void OnAttack(InputValue value)
@@ -37,6 +46,41 @@ public class Hotbar : MonoBehaviour
         if (current < spells.Length && spells[current] != null)
         {
             spells[current].CanCast();
+        }
+    }
+
+    public bool AddSpell(Spells spellPrefab, bool equip = true)
+    {
+        if (spellPrefab == null) return false;
+
+        for (int i = 0; i < spells.Length; i++)
+            if (spells[i] != null && spells[i].GetType() == spellPrefab.GetType())
+                return false;
+
+        for (int i = 0; i < spells.Length; i++)
+        {
+            if (spells[i] != null) continue;
+
+            spells[i] = Instantiate(spellPrefab, spellParent != null ? spellParent : transform);
+            spells[i].transform.localPosition = Vector3.zero;
+            spells[i].transform.localRotation = Quaternion.identity;
+            RefreshIcons();
+
+            if (equip) Select(i);
+            return true;
+        }
+
+        return false;
+    }
+    private void RefreshIcons()
+    {
+        for (int i = 0; i < slotIcons.Length && i < spells.Length; i++)
+        {
+            if (slotIcons[i] == null) continue;
+
+            bool hasIcon = spells[i] != null && spells[i].icon != null;
+            slotIcons[i].enabled = hasIcon;                      
+            slotIcons[i].sprite = hasIcon ? spells[i].icon : null;
         }
     }
 

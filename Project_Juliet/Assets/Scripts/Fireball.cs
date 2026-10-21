@@ -9,6 +9,11 @@ public class Fireball : Spells
     [SerializeField] private float speed = 10f;
     [SerializeField] private float damage = 10f;
 
+
+    private void Awake()
+    {
+        if (firePoint == null) firePoint = transform.parent;  
+    }
     protected override void Use()
     {
         GameObject spell = Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
