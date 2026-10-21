@@ -41,6 +41,15 @@ public class PlayerHealth : MonoBehaviour
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
     }
+    
+    public void SetHealth(float amount)
+    {
+       
+        currentHealth = Mathf.Min(currentHealth + amount, 100f);
+        healthBar.value = currentHealth;
+        healthText.text = $"{currentHealth}/{maxHealth}";
+        Debug.Log(currentHealth);
+    }
 
     // Update is called once per frame
     void Update()
