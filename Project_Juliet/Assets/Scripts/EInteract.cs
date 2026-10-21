@@ -45,5 +45,24 @@ public class EInteract : MonoBehaviour
 
             health.SetHealth(10);
         }
+        if (item.name.Equals("ClinicNote"))
+
+        {
+            if (item.activeSelf)
+            {
+                item.SetActive(false);
+                Debug.Log("ClinicPanel is now inactive");
+            }
+            else
+            {
+
+                item.SetActive(true);
+                Debug.Log("ClinicPanel is now active");
+
+            }
+
+
+        }
     }
 }
+
