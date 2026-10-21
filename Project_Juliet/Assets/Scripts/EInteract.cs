@@ -61,7 +61,19 @@ public class EInteract : MonoBehaviour
 
             }
 
-
+        }
+        if (item.name.Equals("TabletPanel"))
+        {
+            if (item.activeSelf)
+            {
+                item.SetActive(false);
+                Debug.Log("TabletPanel is now inactive");
+            }
+            else
+            {
+                item.SetActive(true);
+                Debug.Log("TabletPanel is now active");
+            }
         }
     }
 }
