@@ -8,7 +8,9 @@ public class Hotbar : MonoBehaviour
 
     [SerializeField] private Spells[] spells;
     [SerializeField] private Image[] slotIcons;
-
+    [SerializeField] private Image[] slotBackgrounds;
+    [SerializeField] private Color emptySlotColor = new(0.2f, 0.2f, 0.2f, 1f);
+    [SerializeField] private Color filledSlotColor = Color.white;
     [SerializeField] private GameObject[] selectionFrame;
     [SerializeField] private Transform spellParent;
 
@@ -74,13 +76,21 @@ public class Hotbar : MonoBehaviour
     }
     private void RefreshIcons()
     {
-        for (int i = 0; i < slotIcons.Length && i < spells.Length; i++)
+        for (int i = 0; i < spells.Length; i++)
         {
-            if (slotIcons[i] == null) continue;
+            bool hasSpell = spells[i] != null;
 
-            bool hasIcon = spells[i] != null && spells[i].icon != null;
-            slotIcons[i].enabled = hasIcon;                      
-            slotIcons[i].sprite = hasIcon ? spells[i].icon : null;
+            if (i < slotIcons.Length && slotIcons[i] != null)
+            {
+                bool hasIcon = hasSpell && spells[i].icon != null;
+                slotIcons[i].gameObject.SetActive(hasIcon);
+                slotIcons[i].sprite = hasIcon ? spells[i].icon : null;
+            }
+
+            if (slotBackgrounds != null && i < slotBackgrounds.Length && slotBackgrounds[i] != null)
+            {
+                slotBackgrounds[i].color = hasSpell ? filledSlotColor : emptySlotColor;
+            }
         }
     }
 
