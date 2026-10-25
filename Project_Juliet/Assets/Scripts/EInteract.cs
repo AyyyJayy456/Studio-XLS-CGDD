@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EInteract : MonoBehaviour
 {
@@ -11,8 +12,11 @@ public class EInteract : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange &&
+              Keyboard.current != null &&
+              Keyboard.current.eKey.wasPressedThisFrame)
         {
+            
             PerformAction();
         }
     }
@@ -45,7 +49,7 @@ public class EInteract : MonoBehaviour
 
             health.SetHealth(10);
         }
-        if (item.name.Equals("ClinicNote"))
+        else if (item.name.Equals("ClinicNote"))
 
         {
             if (item.activeSelf)
@@ -62,7 +66,7 @@ public class EInteract : MonoBehaviour
             }
 
         }
-        if (item.name.Equals("TabletPanel"))
+        else if (item.name.Equals("TabletPanel"))
         {
             if (item.activeSelf)
             {
@@ -74,6 +78,10 @@ public class EInteract : MonoBehaviour
                 item.SetActive(true);
                 Debug.Log("TabletPanel is now active");
             }
+        }
+        else
+        {
+
         }
     }
 }
