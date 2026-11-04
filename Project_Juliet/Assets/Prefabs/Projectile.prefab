@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4292533001366147088}
   - component: {fileID: 7658064903648530893}
   - component: {fileID: 199278644476835847}
-  - component: {fileID: 5912309116716178276}
   - component: {fileID: -5005935946169890480}
+  - component: {fileID: -8707301266048521141}
   m_Layer: 7
   m_Name: Projectile
   m_TagString: Projectile
@@ -114,18 +114,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5912309116716178276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4681497017246909810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6f3d94fe5d843409162764dad12773, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Projectile
 --- !u!54 &-5005935946169890480
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,7 +137,19 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8707301266048521141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681497017246909810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5d6c5120525b84ebdbcdf36e5a9e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile

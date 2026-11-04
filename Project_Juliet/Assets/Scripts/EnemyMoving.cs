@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyMoving : MonoBehaviour
 {
     [Header("Orbit Movement")]     
@@ -16,11 +17,15 @@ public class EnemyMoving : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
+    private StatusEffects status;
     private Rigidbody rb;
     private Transform playerTarget;
     private float nextFireTime;
     private Vector3 centerPoint;
     private float currentAngle;
+
+    private bool Stunned => status != null && status.IsStunned;
+    private float SpeedMulti => status != null ? status.SpeedMulti : 1f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,6 +34,7 @@ public class EnemyMoving : MonoBehaviour
             rb.freezeRotation = true;
             rb.isKinematic = true;
         }
+        status = GetComponent<StatusEffects>();
 
         FindPlayer();
         centerPoint = transform.position;
@@ -42,8 +48,10 @@ public class EnemyMoving : MonoBehaviour
     }
     private void HandleMovement()
     {
+        if (Stunned) return;
+
         float dir = clockwise ? -1f : 1f;
-        currentAngle += dir * orbitSpeed * Time.deltaTime;
+        currentAngle += dir * orbitSpeed * SpeedMulti * Time.deltaTime;
         currentAngle %= 360f;
         float rad = currentAngle * Mathf.Deg2Rad;
         Vector3 offset = new Vector3(Mathf.Cos(rad), 0f, Mathf.Sin(rad)) * orbitRadius;
@@ -75,10 +83,12 @@ public class EnemyMoving : MonoBehaviour
         float distance = Vector3.Distance(transform.position, playerTarget.position);
         if (distance > detectionRadius) return;
 
+        if (Stunned) return;
+
         if (Time.time >= nextFireTime)
         {
             Shoot();
-            nextFireTime = Time.time + (1f / fireRate);
+            nextFireTime = Time.time + (1f / (fireRate * SpeedMulti));
         }
     }
 
@@ -101,9 +111,9 @@ public class EnemyMoving : MonoBehaviour
         Quaternion bulletRotation = Quaternion.LookRotation(aimDirection);
         GameObject bullet = Instantiate(projectilePrefab, spawnPos, bulletRotation);
 
-        if (bullet.TryGetComponent<Projectile>(out var projectile))
+        if (bullet.TryGetComponent<EnemyProjectile>(out var projectile))
         {
-            projectile.Initialize(projectileDamage, projectileSpeed, "Player");
+            projectile.Initialize(projectileDamage, projectileSpeed);
         }
     }
     private void FindPlayer()

@@ -46,11 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scatter
   spellName: Scatter
   icon: {fileID: 21300000, guid: 077118fa89f92734caf60ac2e485c056, type: 3}
-  cooldown: 1
+  cooldown: 0.2
   spellPrefab: {fileID: 4681497017246909810, guid: 24574b20d95ceb243ad4c263d9e0ab31, type: 3}
   firePoint: {fileID: 0}
   spellSpeed: 10
-  spellDamage: 5
+  spellDamage: 8
   maxProjectiles: 5
   regenTime: 1
   anglePer: 10
+  range: 10
+  minFalloff: 0.3
+  slowFactor: 0.5
+  slowDuration: 2
