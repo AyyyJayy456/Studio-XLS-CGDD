@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Zap : Spells
@@ -6,26 +7,39 @@ public class Zap : Spells
     [SerializeField] private float radius = 5f;
     [SerializeField] private float damage = 15f;
     [SerializeField] private float expandTime = 0.3f;
+    [SerializeField] private float stunDuration = 1f;
+    [SerializeField] private float knockbackForce = 5f;
+    [SerializeField] private float shockwaveYOffset = -0.5f;
     [SerializeField] private GameObject shockwavePrefab;
 
     protected override void Use()
     {
+        var hit = new HashSet<EnemyHealth>();
+
         foreach (Collider col in Physics.OverlapSphere(transform.position, radius))
         {
-            var projectile = col.GetComponentInParent<Projectile>();
-            if (projectile != null)
+            var enemyShot = col.GetComponentInParent<EnemyProjectile>();
+            if (enemyShot != null)
             {
-                if (projectile.TargetTag == "Player")
-                {
-                    Destroy(projectile.gameObject);
-                    continue;
-                }
+                Destroy(enemyShot.gameObject);
+                continue;
             }
+            if (col.GetComponentInParent<Projectile>() != null) continue;
             var enemy = col.GetComponentInParent<EnemyHealth>();
-            if (enemy != null)
+            if (enemy == null || !hit.Add(enemy)) continue;
+
+            enemy.TakeDamage(damage);
+            if (enemy.TryGetComponent<StatusEffects>(out var fx))
             {
-                enemy.TakeDamage(damage);
+                fx.Stun(stunDuration);
             }
+            if (enemy.TryGetComponent<Rigidbody>(out var rb) && !rb.isKinematic)
+            {
+                Vector3 dir = enemy.transform.position - transform.position;
+                dir.y = 0f;
+                rb.AddForce(dir.normalized * knockbackForce, ForceMode.VelocityChange);
+            }
+
         }
 
         StartCoroutine(Shockwave());

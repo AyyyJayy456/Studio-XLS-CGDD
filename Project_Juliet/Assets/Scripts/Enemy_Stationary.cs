@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Enemy_Stationary : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 15f;
@@ -10,18 +11,20 @@ public class Enemy_Stationary : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
+    private StatusEffects status;
     private Rigidbody rb;
     private Transform playerTarget;
     private float nextFireTime;
- 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.freezeRotation = true;
-            rb.isKinematic = true; 
+            rb.isKinematic = true;
         }
+        status = GetComponent<StatusEffects>();
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
@@ -47,10 +50,13 @@ public class Enemy_Stationary : MonoBehaviour
         float distance = Vector3.Distance(transform.position, playerTarget.position);
         if (distance > detectionRadius) return;
 
+        if (status != null && status.IsStunned) return;
+
         if (Time.time >= nextFireTime)
         {
             Shoot();
-            nextFireTime = Time.time + (1f / fireRate);
+            float rate = fireRate * (status != null ? status.SpeedMulti : 1f);
+            nextFireTime = Time.time + (1f / rate);
         }
     }
 
@@ -74,9 +80,9 @@ public class Enemy_Stationary : MonoBehaviour
         Quaternion bulletRotation = Quaternion.LookRotation(aimDirection);
         GameObject bullet = Instantiate(projectilePrefab, spawnPos, bulletRotation);
 
-        if (bullet.TryGetComponent<Projectile>(out var projectile))
+        if (bullet.TryGetComponent<EnemyProjectile>(out var projectile))
         {
-            projectile.Initialize(projectileDamage, projectileSpeed, "Player");
+            projectile.Initialize(projectileDamage, projectileSpeed);
         }
     }
 }

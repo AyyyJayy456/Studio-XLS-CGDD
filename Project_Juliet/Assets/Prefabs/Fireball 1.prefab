@@ -46,8 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Fireball
   spellName: Fireball
   icon: {fileID: 21300000, guid: 8992416c17935cd4ba78c1501ba91e5b, type: 3}
-  cooldown: 0.7
+  cooldown: 1.5
   spellPrefab: {fileID: 4681497017246909810, guid: f1bd1f241f4f16d4aad29593d0739b03, type: 3}
   firePoint: {fileID: 0}
-  speed: 8
-  damage: 10
+  spellSpeed: 6
+  spellDamage: 25
+  burnDps: 4
+  burnDuration: 3
+  blastRadius: 3

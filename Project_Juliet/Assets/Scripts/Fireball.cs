@@ -1,14 +1,17 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Fireball : Spells
 {
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float damage = 10f;
+    [SerializeField] private float spellSpeed = 6f;
+    [SerializeField] private float spellDamage = 20f;
 
+    [SerializeField] private float burnDps = 4f;
+    [SerializeField] private float burnDuration = 3f;
+
+    [SerializeField] private float blastRadius = 3f;
+    [SerializeField] private float lifetime = 3f;
 
     private void Awake()
     {
@@ -19,7 +22,11 @@ public class Fireball : Spells
         GameObject spell = Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
         if (spell.TryGetComponent<Projectile>(out var projectile))
         {
-            projectile.Initialize(damage, speed, "Enemy");
+            projectile.Initialize(spellDamage, spellSpeed, lifetime);
+            projectile.burnDps = burnDps;
+            projectile.burnDuration = burnDuration;
+            projectile.blastRadius = blastRadius;
+            projectile.blastFallOff = 0.5f;
         }
     }
 }

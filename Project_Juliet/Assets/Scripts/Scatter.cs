@@ -13,6 +13,11 @@ public class Scatter : Spells
     [SerializeField] private float regenTime = 1f;
     [SerializeField] private float anglePer = 10f;
 
+    [SerializeField] private float range = 10f;
+    [SerializeField] private float minFalloff = 0.3f;
+    [SerializeField] private float slowFactor = 0.5f;
+    [SerializeField] private float slowDuration = 2f;
+
     private int shots;
     private float regenTimer;
 
@@ -45,7 +50,6 @@ public class Scatter : Spells
 
     protected override void Use()
     {
-        Debug.Log("shots fired: " + shots);
         if (shots <= 0) return;
 
         int count = shots;
@@ -60,7 +64,13 @@ public class Scatter : Spells
             GameObject spell = Instantiate(spellPrefab, firePoint.position, rot);
 
             if (spell.TryGetComponent<Projectile>(out var projectile))
-                projectile.Initialize(spellDamage, spellSpeed, "Enemy");
+            {
+                projectile.Initialize(spellDamage, spellSpeed);
+                projectile.fallOffDistance = range;
+                projectile.minFalloff = minFalloff;
+                projectile.slowFactor = slowFactor;
+                projectile.slowDuration = slowDuration;
+            }
         }
     }
 }

@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 5638014517820657056}
   - component: {fileID: 1312442314590201180}
   - component: {fileID: 5632274219405144476}
+  - component: {fileID: -6609047339927569254}
   m_Layer: 0
   m_Name: EnemyMoving
   m_TagString: Enemy
@@ -459,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee44517534a373d4ebd04b8be9151740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 30
+  maxHealth: 60
   healthBar: {fileID: 2473008971650565334}
 --- !u!54 &5638014517820657056
 Rigidbody:
@@ -523,7 +524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2718c96d5e4bd409b4e55e15304003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoving
-  pivotEnemy: {fileID: 0}
   orbitRadius: 5
   orbitSpeed: 40
   clockwise: 1
@@ -534,6 +534,18 @@ MonoBehaviour:
   projectileDamage: 10
   projectilePrefab: {fileID: 4681497017246909810, guid: 469b0b17f952ae54488d58edc4f9863f, type: 3}
   firePoint: {fileID: 889177701652844318}
+--- !u!114 &-6609047339927569254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136345030021390519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb52f121116ca84c94ff9240baffce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffects
 --- !u!1 &7335968407604764706
 GameObject:
   m_ObjectHideFlags: 0

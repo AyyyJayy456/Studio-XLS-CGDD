@@ -48,6 +48,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e68298585b6d6e044b8e72c56da4f8d9, type: 3}
   cooldown: 2
   radius: 5
-  damage: 5
+  damage: 15
   expandTime: 0.3
+  stunDuration: 1
+  knockbackForce: 5
   shockwavePrefab: {fileID: 1393013097681380164, guid: ba37233ce53ec0a40bf944f1f9e5b007, type: 3}
