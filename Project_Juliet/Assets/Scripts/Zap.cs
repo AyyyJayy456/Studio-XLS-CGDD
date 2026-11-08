@@ -47,7 +47,7 @@ public class Zap : Spells
 
     private IEnumerator Shockwave()
     {
-        var shockwave = Instantiate(shockwavePrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+        var shockwave = Instantiate(shockwavePrefab, transform.position, Quaternion.identity);
         var material = shockwave.GetComponentInChildren<Renderer>().material;
         Color baseColor = material.color;
 

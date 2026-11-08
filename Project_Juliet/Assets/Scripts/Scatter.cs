@@ -47,6 +47,7 @@ public class Scatter : Spells
             shots++;
         }
     }
+    public override float CooldownFill => 1f - (float)shots / maxProjectiles;
 
     protected override void Use()
     {

@@ -11,6 +11,7 @@ public class Hotbar : MonoBehaviour
     [SerializeField] private Image[] slotBackgrounds;
     [SerializeField] private Color emptySlotColor = new(0.2f, 0.2f, 0.2f, 1f);
     [SerializeField] private Color filledSlotColor = Color.white;
+    [SerializeField] private Image[] cooldownOverlays;
     [SerializeField] private GameObject[] selectionFrame;
     [SerializeField] private Transform spellParent;
 
@@ -31,6 +32,7 @@ public class Hotbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateCooldowns();
         if (Spells.inPauseMenu) return;
         
         var kb = Keyboard.current;
@@ -74,6 +76,16 @@ public class Hotbar : MonoBehaviour
 
         return false;
     }
+
+    private void UpdateCooldowns()
+    {
+        for ( int i = 0; i < cooldownOverlays.Length && i < spells.Length; i++)
+        {
+            if (cooldownOverlays[i] == null) continue;
+            cooldownOverlays[i].fillAmount = spells[i] != null ? spells[i].CooldownFill : 0f;
+        }
+    }
+    
     private void RefreshIcons()
     {
         for (int i = 0; i < spells.Length; i++)

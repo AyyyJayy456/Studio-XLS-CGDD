@@ -54,3 +54,4 @@ MonoBehaviour:
   burnDps: 4
   burnDuration: 3
   blastRadius: 3
+  lifetime: 2.5

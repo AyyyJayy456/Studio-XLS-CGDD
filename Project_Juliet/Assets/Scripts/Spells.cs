@@ -24,5 +24,16 @@ public abstract class Spells : MonoBehaviour
         return true;
     }
 
+    public virtual float CooldownFill
+    {
+        get 
+        { 
+            if (cooldown <= 0f)
+            {
+                return 0f;
+            }
+            return Mathf.Clamp01(1f - (Time.time - lastCastTime) / cooldown);
+        }
+    }
     protected abstract void Use();
 }
