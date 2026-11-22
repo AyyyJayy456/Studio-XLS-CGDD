@@ -3,24 +3,28 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float rotationSpeed = 15f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Camera playerCamera;
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public GameObject winScreen;
+    [SerializeField] private Animator animator;
     private float cameraAngle = 45f;
 
     private Rigidbody rb;
     private Vector2 moveInput;
     private Vector2 pointInput;
     private Vector3 lookTarget;
+    private Vector3 moveVelocity;
     private Quaternion cameraAng;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
         rb.freezeRotation = true;
 
         if (playerCamera == null)
@@ -34,7 +38,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        UpdateAnim();
     }
 
     public void OnMove(InputValue value)
@@ -52,16 +56,25 @@ public class Player : MonoBehaviour
     {
         MovePlayer();
         RotatePlayer();
+        UpdateAnim();
     }
 
     private void MovePlayer()
     {
         Vector3 input = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
         Vector3 moveDirection = cameraAng * input;
-        Vector3 moveVelocity = moveDirection * moveSpeed;
+        moveVelocity = moveDirection * moveSpeed;
 
         moveVelocity.y = rb.linearVelocity.y;
         rb.linearVelocity = moveVelocity;
+    }
+    private void UpdateAnim()
+    {
+        if (animator == null) return;
+
+        Vector3 flat = moveVelocity;
+        flat.y = 0f;
+        animator.SetFloat(SpeedHash, flat.magnitude);
     }
 
     private void RotatePlayer()

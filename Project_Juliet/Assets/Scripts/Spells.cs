@@ -5,10 +5,10 @@ public abstract class Spells : MonoBehaviour
     public string spellName;
     public Sprite icon;
     public static bool inPauseMenu;
+    
     [SerializeField] protected float cooldown = 1f;
 
     private float lastCastTime = -Mathf.Infinity;
-
     public bool CanCast()
     {
         if (inPauseMenu)

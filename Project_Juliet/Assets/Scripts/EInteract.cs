@@ -66,17 +66,15 @@ public class EInteract : MonoBehaviour
             }
 
         }
-        else if (item.name.Equals("TabletPanel"))
+        else if (item.name.Equals("PadlockPanel"))
         {
             if (item.activeSelf)
             {
                 item.SetActive(false);
-                Debug.Log("TabletPanel is now inactive");
             }
             else
             {
                 item.SetActive(true);
-                Debug.Log("TabletPanel is now active");
             }
         }
         else
