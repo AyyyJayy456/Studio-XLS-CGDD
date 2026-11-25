@@ -63,9 +63,9 @@ public class LockPuzzle : MonoBehaviour
     public void ClearDisplay()
     {
         guess = new int[3];
-        images[0].color = Color.white;
-        images[1].color = Color.white;
-        images[2].color = Color.white;
+        images[0].color = new Color32(255, 255, 255, 90);
+        images[1].color = new Color32(255, 255, 255, 90);
+        images[2].color = new Color32(255, 255, 255, 90);
         displayText.text = "";
     }
     public void ExitPuzzle()
@@ -85,10 +85,10 @@ public class LockPuzzle : MonoBehaviour
         
             if(correctCode.SequenceEqual(guess))
             {
-                images[0].color = Color.green;
-                images[1].color = Color.green;
-                images[2].color = Color.green;
-                puzzleSolved = true;
+                images[0].color = new Color32(0, 255, 0, 90);
+                images[1].color = new Color32(0, 255, 0, 90);
+            images[2].color = new Color32(0, 255, 0, 90);
+            puzzleSolved = true;
                 anim.SetTrigger("CaveUnlocked");
                  StartCoroutine(StartCountdown());
                
@@ -98,13 +98,13 @@ public class LockPuzzle : MonoBehaviour
 
             if (guess[i] == correctCode[i])
             {
-                images[i].color = Color.green; 
+                images[i].color = new Color32(0, 255, 0, 90);
             }
             else if (correctCode.Contains(guess[i])) { 
-                images[i].color = Color.yellow;
+                images[i].color = new Color32(255, 215, 0, 90);
             }
             else {
-                images[i].color = Color.red;
+                images[i].color = new Color32(255, 0, 0, 90);
             }
         }
     }
